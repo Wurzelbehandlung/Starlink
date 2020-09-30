@@ -84,41 +84,10 @@ c.move(pl_1, MID_X+200, MID_Y)
 dx = 0.1
 dy = 0.1
 
-
-class SpaceObject:
-    def __init__(self, canvas, color, radius):
-        self.canvas = canvas
-        self.radius = radius
-        self.id = canvas.create_oval(0, 0, radius, radius, fill=color)
-        self.canvas.move(self.id, MID_X+100, MID_Y+50)
-        self.velocity = [0, 0]
-
-    def draw(self):
-        self.canvas.move(self.id, self.velocity[0], self.velocity[1])
-        self.canvas.after(1, self.draw)
-
-    def bounce(self):
-        pos = self.canvas.coords(self.id)
-        if (pos[0] > WIDTH - self.radius) or (pos[0] < 0):
-            self.velocity[0] = -self.velocity[0]
-        if (pos[1] > HEIGHT - self.radius) or (pos[1] < 0):
-            self.velocity[1] = -self.velocity[1]
-        self.canvas.after(1, self.bounce)
-
-    def gravity(self):
-        self.velocity[1] = self.velocity[1] + 0.01
-        self.canvas.after(1, self.gravity)
-
-
 f = (G * (int(m1)) * (int(m2)) / (int(r)) ** 2)
 
 s = 'Fg = {:3.3e}'.format(f)
 ergebnis_fg.set(s)
 
-sun = SpaceObject(c, "red", 50)
-sun.velocity = [0.2, -2]
-sun.draw()
-sun.bounce()
-sun.gravity()
 # Das hier macht, dass das tkinter-Fenster angezeigt wird:
 window.mainloop()
