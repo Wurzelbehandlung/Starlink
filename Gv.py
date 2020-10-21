@@ -8,7 +8,7 @@ MID_Y = HEIGHT / 2
 class SpaceObject:
     def __init__(self, canvas, m, x,  y):
         self.canvas = canvas
-        if (int(m)) < 1000:
+        if (int(m)) <= 1000:
             color = ("grey")
             radius = (int(m)) / 10
         if (int(m)) > 1000:
@@ -33,8 +33,8 @@ class SpaceObject:
             color = ("blue")
             radius = (int(m)) / 1000000000
         self.radius = radius    
-        self.id = canvas.create_oval(0, 0, self.radius, self.radius, fill=color)
-        self.canvas.move(self.id, x, y)
+        self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
+        self.canvas.move(self.id, x - self.radius, y - radius)
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
