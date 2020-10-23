@@ -7,37 +7,39 @@ MID_Y = HEIGHT / 2
 
 G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
 
+
 class SpaceObject:
     def __init__(self, canvas, m, x,  y):
         self.canvas = canvas
         if (int(m)) <= 1000:
-            color = ("grey")
+            color = "grey"
             radius = (int(m)) / 10
         if (int(m)) > 1000:
-            color = ("brown")
+            color = "brown"
             radius = (int(m)) / 100
         if (int(m)) > 100000:
-            color = ("green")
+            color = "green"
             radius = (int(m)) / 10000
         if (int(m)) > 10000000:
-            color = ("orange")
+            color = "orange"
             radius = (int(m)) / 100000
         if (int(m)) > 1000000000:
-            color = ("red")
+            color = "red"
             radius = (int(m)) / 1000000
         if (int(m)) > 100000000000:
-            color = ("yellow")
+            color = "yellow"
             radius = (int(m)) / 10000000
         if (int(m)) > 10000000000000:
-            color = ("red")
+            color = "red"
             radius = (int(m)) / 100000000
         if (int(m)) > 1000000000000000:
-            color = ("blue")
+            color = "blue"
             radius = (int(m)) / 1000000000
         self.radius = radius    
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         self.canvas.move(self.id, x - self.radius, y - radius)
         self.velocity = [0, 0]
+
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
@@ -54,6 +56,8 @@ class SpaceObject:
     def gravity(self):
         self.velocity[1] = self.velocity[1] + 0.01
         self.canvas.after(1, self.gravity)
+
+
 class FG:
     def __init__(self, canvas,   f,  dist,  m1,  m2):
         self.canas = canvas
@@ -68,8 +72,11 @@ class FG:
             f = f / 10
             k = k * 10
             i = i * 10
+
+
 window = Tk()
 window.title("Gravitationssimulation")
+
 
 def click_berechnen_button():
     m1 = lm1.get()
@@ -80,10 +87,11 @@ def click_berechnen_button():
     m2 = 0 - (int(m2))
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
-    a = SpaceObject(c, m1,  (MID_X + 100), (MID_Y))
-    
-    b = SpaceObject(c,  m2, (MID_X - 100), (MID_Y) )
-    #z = FG(c,  f, dist,  m1,  m2)
+    a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+    b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+    # z = FG(c,  f, dist,  m1,  m2)
+
+
 frame = Frame(window)
 frame.pack(side=LEFT)
 s_m1 = StringVar()
