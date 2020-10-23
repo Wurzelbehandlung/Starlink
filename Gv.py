@@ -13,31 +13,22 @@ class SpaceObject:
         self.canvas = canvas
         if (int(m)) <= 1000:
             color = "grey"
-            radius = (int(m)) / 10
         if (int(m)) > 1000:
             color = "brown"
-            radius = (int(m)) / 100
         if (int(m)) > 100000:
             color = "green"
-            radius = (int(m)) / 10000
         if (int(m)) > 10000000:
             color = "orange"
-            radius = (int(m)) / 100000
         if (int(m)) > 1000000000:
             color = "red"
-            radius = (int(m)) / 1000000
         if (int(m)) > 100000000000:
             color = "yellow"
-            radius = (int(m)) / 10000000
         if (int(m)) > 10000000000000:
             color = "red"
-            radius = (int(m)) / 100000000
         if (int(m)) > 1000000000000000:
             color = "blue"
-            radius = (int(m)) / 1000000000
-        self.radius = radius    
+        self.radius = 30
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
-        self.canvas.move(self.id, x - self.radius, y - radius)
         self.canvas.move(self.id, x - self.radius, y - self.radius)
         self.velocity = [0, 0]
 
