@@ -38,6 +38,7 @@ class SpaceObject:
         self.radius = radius    
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         self.canvas.move(self.id, x - self.radius, y - radius)
+        self.canvas.move(self.id, x - self.radius, y - self.radius)
         self.velocity = [0, 0]
 
     def draw(self):
