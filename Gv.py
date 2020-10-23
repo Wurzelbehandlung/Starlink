@@ -70,8 +70,13 @@ class FG:
 window = Tk()
 window.title("Gravitationssimulation")
 
+a = None
+b = None
 
 def click_berechnen_button():
+    global a
+    global b
+
     m1 = lm1.get()
     m2 = lm2.get()
     dist = ldist.get()
@@ -82,8 +87,14 @@ def click_berechnen_button():
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
 
-    a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
-    b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+    if (a == None):
+        a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+        a.bounce()
+        a.draw()
+    if (b == None):
+        b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+        b.bounce()
+        b.draw()
     # z = FG(c,  f, dist,  m1,  m2)
 
 
