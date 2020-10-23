@@ -81,12 +81,14 @@ window.title("Gravitationssimulation")
 def click_berechnen_button():
     m1 = lm1.get()
     m2 = lm2.get()
-    
     dist = ldist.get()
-    f = (G * (int(m1)) * (int(m2)) / (int(dist)) ** 2)
-    m2 = 0 - (int(m2))
+
+    f = (G * (float(m1)) * (float(m2)) / (float(dist)) ** 2)    # dph: ich habe hier int() auf float() geändert
+    # m2 = 0 - (int(m2))                                        # dph: die Zeile versteh ich nicht wozu die da ist.
+
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
+
     a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
     b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
     # z = FG(c,  f, dist,  m1,  m2)
