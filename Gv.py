@@ -1,4 +1,5 @@
 from tkinter import *
+from math import log
 
 HEIGHT = 1000
 WIDTH = 1200
@@ -27,7 +28,7 @@ class SpaceObject:
             color = "red"
         if (int(m)) > 1e15:
             color = "blue"
-        self.radius = 30
+        self.radius = 30 + log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         self.canvas.move(self.id, x - self.radius, y - self.radius)
         self.velocity = [0, 0]
