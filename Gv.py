@@ -11,21 +11,21 @@ G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
 class SpaceObject:
     def __init__(self, canvas, m, x,  y):
         self.canvas = canvas
-        if (int(m)) <= 1000:
+        if (int(m)) <= 1e3:
             color = "grey"
-        if (int(m)) > 1000:
+        if (int(m)) > 1e3:
             color = "brown"
-        if (int(m)) > 100000:
+        if (int(m)) > 1e6:
             color = "green"
-        if (int(m)) > 10000000:
+        if (int(m)) > 1e8:
             color = "orange"
-        if (int(m)) > 1000000000:
+        if (int(m)) > 1e9:
             color = "red"
-        if (int(m)) > 100000000000:
+        if (int(m)) > 1e11:
             color = "yellow"
-        if (int(m)) > 10000000000000:
+        if (int(m)) > 1e13:
             color = "red"
-        if (int(m)) > 1000000000000000:
+        if (int(m)) > 1e15:
             color = "blue"
         self.radius = 30
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
