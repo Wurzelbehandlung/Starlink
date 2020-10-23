@@ -5,6 +5,8 @@ WIDTH = 1200
 MID_X = WIDTH / 2
 MID_Y = HEIGHT / 2
 
+G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
+
 class SpaceObject:
     def __init__(self, canvas, m, x,  y):
         self.canvas = canvas
@@ -111,8 +113,5 @@ b_rechnen.pack(side=BOTTOM)
 
 c = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 c.pack()
-
-G = 0.00000000006674
-
 
 window.mainloop()
