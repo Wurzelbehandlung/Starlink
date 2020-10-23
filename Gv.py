@@ -98,6 +98,10 @@ s_m1 = StringVar()
 s_m2 = StringVar()
 s_dist = StringVar()
 
+s_m1.set('1000')
+s_m2.set('2000')
+s_dist.set('10000')
+
 mass1 = Label(frame, text="Masse 1 [kg]")
 mass1.pack(side=TOP)
 lm1 = Entry(frame, textvariable=s_m1)
