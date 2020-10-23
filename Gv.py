@@ -31,12 +31,11 @@ class SpaceObject:
         self.radius = 30 + log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         self.canvas.move(self.id, x - self.radius, y - self.radius)
-        self.velocity = [0, 0]
+        self.velocity = [0, 0.1]
 
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
-        self.velocity = [0, 0]
 
     def bounce(self):
         pos = self.canvas.coords(self.id)
@@ -44,7 +43,7 @@ class SpaceObject:
             self.velocity[0] = -self.velocity[0]
         if (pos[1] > HEIGHT - self.radius) or (pos[1] < 0):
             self.velocity[1] = -self.velocity[1]
-            self.canvas.after(1, self.bounce)
+        self.canvas.after(1, self.bounce)
 
     def gravity(self):
         self.velocity[1] = self.velocity[1] + 0.01
