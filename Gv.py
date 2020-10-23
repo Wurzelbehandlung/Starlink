@@ -82,7 +82,11 @@ def click_berechnen_button():
     ergebnis_fg.set(disp_txt)
 
     a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+    a.bounce()
+    a.draw()
     b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+    b.bounce()
+    b.draw()
     # z = FG(c,  f, dist,  m1,  m2)
 
 
