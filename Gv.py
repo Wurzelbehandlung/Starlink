@@ -27,13 +27,14 @@ class SpaceObject:
             color = "red"
         if (int(m)) > 1e15:
             color = "blue"
-        self.radius = 30 +  log(float(m)) * 3
+        self.radius = 30 + log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
-        if bool == True:
+        if b_offset == True:
             self.canvas.move(self.id, x - self.radius, y - self.radius)
         else:
             self.canvas.move(self.id, x + self.radius, y - self.radius)
         self.velocity = [0, 0.1]
+
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
@@ -73,6 +74,7 @@ window.title("Gravitationssimulation")
 a = None
 b = None
 
+
 def click_berechnen_button():
     global a, b
     
@@ -90,7 +92,9 @@ def click_berechnen_button():
         b = SpaceObject(c,  m2, (MID_X - 100), MID_Y, True)
         b.bounce()
         b.draw()
-#z = FG(c,  f, dist,  m1,  m2)
+    # z = FG(c,  f, dist,  m1,  m2)
+
+
 frame = Frame(window)
 frame.pack(side=LEFT)
 s_m1 = StringVar()
@@ -127,4 +131,3 @@ c = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 c.pack()
 
 window.mainloop()
-
