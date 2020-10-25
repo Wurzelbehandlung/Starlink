@@ -83,11 +83,11 @@ def click_berechnen_button():
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
     if a is None:
-        a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+        a = SpaceObject(c, m1,  (MID_X + 100), MID_Y, True)
         a.bounce()
         a.draw()
     if b is None:
-        b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+        b = SpaceObject(c,  m2, (MID_X - 100), MID_Y, True)
         b.bounce()
         b.draw()
 #z = FG(c,  f, dist,  m1,  m2)
