@@ -1,47 +1,43 @@
 from tkinter import *
-
+from math import log
 HEIGHT = 1000
 WIDTH = 1200
 MID_X = WIDTH / 2
 MID_Y = HEIGHT / 2
 
+G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
+
+
 class SpaceObject:
     def __init__(self, canvas, m, x,  y, bool):
         self.canvas = canvas
-        if (int(m)) <= 1000:
-            color = ("grey")
-            radius = (int(m)) / 99
-        if (int(m)) > 1000:
-            color = ("brown")
-            radius = (int(m)) / 999
-        if (int(m)) > 100000:
-            color = ("green")
-            radius = (int(m)) / 99990
-        if (int(m)) > 10000000:
-            color = ("orange")
-            radius = (int(m)) / 9999900
-        if (int(m)) > 1000000000:
-            color = ("red")
-            radius = (int(m)) / 999999000
-        if (int(m)) > 100000000000:
-            color = ("yellow")
-            radius = (int(m)) / 99999990000
-        if (int(m)) > 10000000000000:
-            color = ("red")
-            radius = (int(m)) / 9999999900000
-        if (int(m)) > 1000000000000000:
-            color = ("blue")
-            radius = (int(m)) / 999999999000000
-        self.radius = radius    
+        if (int(m)) <= 1e3:
+            color = "grey"
+        if (int(m)) > 1e3:
+            color = "brown"
+        if (int(m)) > 1e6:
+            color = "green"
+        if (int(m)) > 1e8:
+            color = "orange"
+        if (int(m)) > 1e9:
+            color = "red"
+        if (int(m)) > 1e11:
+            color = "yellow"
+        if (int(m)) > 1e13:
+            color = "red"
+        if (int(m)) > 1e15:
+            color = "blue"
+        self.radius = 30 +  log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         if bool == True:
             self.canvas.move(self.id, x - self.radius, y - self.radius)
         else:
             self.canvas.move(self.id, x + self.radius, y - self.radius)
+        self.velocity = [0, 0.1]
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
-        self.velocity = [0, 0]
+        self.velocity = [0, 0.1]
 
     def bounce(self):
         pos = self.canvas.coords(self.id)
@@ -49,7 +45,7 @@ class SpaceObject:
             self.velocity[0] = -self.velocity[0]
         if (pos[1] > HEIGHT - self.radius) or (pos[1] < 0):
             self.velocity[1] = -self.velocity[1]
-            self.canvas.after(1, self.bounce)
+        self.canvas.after(1, self.bounce)
 
     def gravity(self):
         self.velocity[1] = self.velocity[1] + 0.01
@@ -71,23 +67,37 @@ class FG:
 window = Tk()
 window.title("Gravitationssimulation")
 
+a = None
+b = None
+
 def click_berechnen_button():
+    global a, b
+    
     m1 = lm1.get()
     m2 = lm2.get()
     
     dist = ldist.get()
-    f = (G * (int(m1)) * (int(m2)) / (int(dist)) ** 2)
+    f = (G * (float(m1)) * (float(m2)) / (float(dist)) ** 2)
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
-    a = SpaceObject(c, m1,  (MID_X + 500), (MID_Y),  False)
-    
-    b = SpaceObject(c,  m2, (MID_X - 500), (MID_Y),  True)
-    #z = FG(c,  f, dist,  m1,  m2)
+    if a is None:
+        a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+        a.bounce()
+        a.draw()
+    if b is None:
+        b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+        b.bounce()
+        b.draw()
+#z = FG(c,  f, dist,  m1,  m2)
 frame = Frame(window)
 frame.pack(side=LEFT)
 s_m1 = StringVar()
 s_m2 = StringVar()
 s_dist = StringVar()
+
+s_m1.set('1000')
+s_m2.set('2000')
+s_dist.set('10000')
 
 mass1 = Label(frame, text="Masse 1 [kg]")
 mass1.pack(side=TOP)
@@ -113,8 +123,5 @@ b_rechnen.pack(side=BOTTOM)
 
 c = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 c.pack()
-
-G = 0.00000000006674
-
 
 window.mainloop()
