@@ -9,7 +9,7 @@ G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
 
 
 class SpaceObject:
-    def __init__(self, canvas, m, x,  y, bool):
+    def __init__(self, canvas, m, x,  y, b_offset):
         self.canvas = canvas
         if (int(m)) <= 1e3:
             color = "grey"
