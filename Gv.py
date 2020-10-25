@@ -6,35 +6,38 @@ MID_X = WIDTH / 2
 MID_Y = HEIGHT / 2
 
 class SpaceObject:
-    def __init__(self, canvas, m, x,  y):
+    def __init__(self, canvas, m, x,  y, bool):
         self.canvas = canvas
         if (int(m)) <= 1000:
             color = ("grey")
-            radius = (int(m)) / 10
+            radius = (int(m)) / 99
         if (int(m)) > 1000:
             color = ("brown")
-            radius = (int(m)) / 100
+            radius = (int(m)) / 999
         if (int(m)) > 100000:
             color = ("green")
-            radius = (int(m)) / 10000
+            radius = (int(m)) / 99990
         if (int(m)) > 10000000:
             color = ("orange")
-            radius = (int(m)) / 100000
+            radius = (int(m)) / 9999900
         if (int(m)) > 1000000000:
             color = ("red")
-            radius = (int(m)) / 1000000
+            radius = (int(m)) / 999999000
         if (int(m)) > 100000000000:
             color = ("yellow")
-            radius = (int(m)) / 10000000
+            radius = (int(m)) / 99999990000
         if (int(m)) > 10000000000000:
             color = ("red")
-            radius = (int(m)) / 100000000
+            radius = (int(m)) / 9999999900000
         if (int(m)) > 1000000000000000:
             color = ("blue")
-            radius = (int(m)) / 1000000000
+            radius = (int(m)) / 999999999000000
         self.radius = radius    
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
-        self.canvas.move(self.id, x - self.radius, y - radius)
+        if bool == True:
+            self.canvas.move(self.id, x - self.radius, y - self.radius)
+        else:
+            self.canvas.move(self.id, x + self.radius, y - self.radius)
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
@@ -74,12 +77,11 @@ def click_berechnen_button():
     
     dist = ldist.get()
     f = (G * (int(m1)) * (int(m2)) / (int(dist)) ** 2)
-    m2 = 0 - (int(m2))
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
-    a = SpaceObject(c, m1,  (MID_X + 100), (MID_Y))
+    a = SpaceObject(c, m1,  (MID_X + 500), (MID_Y),  False)
     
-    b = SpaceObject(c,  m2, (MID_X - 100), (MID_Y) )
+    b = SpaceObject(c,  m2, (MID_X - 500), (MID_Y),  True)
     #z = FG(c,  f, dist,  m1,  m2)
 frame = Frame(window)
 frame.pack(side=LEFT)
