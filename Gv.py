@@ -50,6 +50,8 @@ class SpaceObject:
     def gravity(self):
         self.velocity[1] = self.velocity[1] + 0.01
         self.canvas.after(1, self.gravity)
+
+
 class FG:
     def __init__(self, canvas,   f,  dist,  m1,  m2):
         self.canas = canvas
@@ -64,6 +66,8 @@ class FG:
             f = f / 10
             k = k * 10
             i = i * 10
+
+
 window = Tk()
 window.title("Gravitationssimulation")
 
@@ -75,7 +79,6 @@ def click_berechnen_button():
     
     m1 = lm1.get()
     m2 = lm2.get()
-    
     dist = ldist.get()
     f = (G * (float(m1)) * (float(m2)) / (float(dist)) ** 2)
     disp_txt = 'Fg = {:3.3e}'.format(f)
@@ -125,3 +128,4 @@ c = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 c.pack()
 
 window.mainloop()
+
