@@ -37,13 +37,12 @@ class SpaceObject:
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
-        self.velocity = [0, 0.1]
 
     def bounce(self):
         pos = self.canvas.coords(self.id)
-        if (pos[0] > WIDTH - self.radius) or (pos[0] < 0):
+        if (pos[0] > (WIDTH - 2 * self.radius)) or (pos[0] < 0):
             self.velocity[0] = -self.velocity[0]
-        if (pos[1] > HEIGHT - self.radius) or (pos[1] < 0):
+        if (pos[1] > (HEIGHT - 2 * self.radius)) or (pos[1] < 0):
             self.velocity[1] = -self.velocity[1]
         self.canvas.after(1, self.bounce)
 
