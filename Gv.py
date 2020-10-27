@@ -9,7 +9,7 @@ G = 6.67430e-11        # m^3 kg^-1 s^-2, in Exponential-Schreibweise lesbarer
 
 
 class SpaceObject:
-    def __init__(self, canvas, m, x,  y, bool):
+    def __init__(self, canvas, m, x,  y, b_offset):
         self.canvas = canvas
         if (int(m)) <= 1e3:
             color = "grey"
@@ -27,23 +27,23 @@ class SpaceObject:
             color = "red"
         if (int(m)) > 1e15:
             color = "blue"
-        self.radius = 30 +  log(float(m)) * 3
+        self.radius = 30 + log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
-        if bool == True:
+        if b_offset == True:
             self.canvas.move(self.id, x, y - self.radius)
         else:
             self.canvas.move(self.id, x - (2 * self.radius), y - self.radius)
         self.velocity = [0, 0.1]
+
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
         self.canvas.after(1, self.draw)
-        self.velocity = [0, 0.1]
 
     def bounce(self):
         pos = self.canvas.coords(self.id)
-        if (pos[0] > WIDTH - self.radius) or (pos[0] < 0):
+        if (pos[0] > (WIDTH - 2 * self.radius)) or (pos[0] < 0):
             self.velocity[0] = -self.velocity[0]
-        if (pos[1] > HEIGHT - self.radius) or (pos[1] < 0):
+        if (pos[1] > (HEIGHT - 2 * self.radius)) or (pos[1] < 0):
             self.velocity[1] = -self.velocity[1]
         self.canvas.after(1, self.bounce)
 
@@ -74,6 +74,7 @@ window.title("Gravitationssimulation")
 a = None
 b = None
 
+
 def click_berechnen_button():
     global a, b
     
@@ -91,7 +92,9 @@ def click_berechnen_button():
         b = SpaceObject(c,  m2, (MID_X - 500), MID_Y, False)
         b.bounce()
         b.draw()
-#z = FG(c,  f, dist,  m1,  m2)
+    # z = FG(c,  f, dist,  m1,  m2)
+
+
 frame = Frame(window)
 frame.pack(side=LEFT)
 s_m1 = StringVar()
@@ -128,4 +131,3 @@ c = Canvas(window, width=WIDTH, height=HEIGHT, bg="black")
 c.pack()
 
 window.mainloop()
-
