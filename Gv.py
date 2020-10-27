@@ -30,9 +30,9 @@ class SpaceObject:
         self.radius = 30 +  log(float(m)) * 3
         self.id = canvas.create_oval(0, 0, self.radius * 2, self.radius * 2, fill=color)
         if bool == True:
-            self.canvas.move(self.id, x - self.radius, y - self.radius)
+            self.canvas.move(self.id, x, y - self.radius)
         else:
-            self.canvas.move(self.id, x + self.radius, y - self.radius)
+            self.canvas.move(self.id, x - (2 * self.radius), y - self.radius)
         self.velocity = [0, 0.1]
     def draw(self):
         self.canvas.move(self.id, self.velocity[0], self.velocity[1])
@@ -84,11 +84,11 @@ def click_berechnen_button():
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
     if a is None:
-        a = SpaceObject(c, m1,  (MID_X + 100), MID_Y)
+        a = SpaceObject(c, m1,  (MID_X + 500), MID_Y, True)
         a.bounce()
         a.draw()
     if b is None:
-        b = SpaceObject(c,  m2, (MID_X - 100), MID_Y)
+        b = SpaceObject(c,  m2, (MID_X - 500), MID_Y, False)
         b.bounce()
         b.draw()
 #z = FG(c,  f, dist,  m1,  m2)
