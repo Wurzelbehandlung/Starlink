@@ -54,20 +54,142 @@ class SpaceObject:
 
 class FG:
     def __init__(self, canvas,   f,  dist,  m1,  m2):
-        self.canas = canvas
+        self.canvas = canvas
         self.f = f
         self.dist = dist
-        self.m_1 = m_1
-        self.m_2 = m_2
-        self.canvas.create_line(y, -100, y, 100 )
-        k = 10
-        i = 1
-        if f > k:
-            f = f / 10
-            k = k * 10
-            i = i * 10
-
-
+        self.m1 = m1
+        self.m2 = m2
+        self.canvas.create_line(MID_Y - 10, 300, MID_Y - 10, 900 )
+        self.f_angabe = 1
+        self.f_kleingenug = False
+        self.anzahl = self.f
+        while self.f_kleingenug == False:
+            if self.anzahl >= 10:
+                self.f_angabe = self.f_angabe * 10
+                self.anzahl = self.anzahl / 10
+            else:
+                self.f_kleingenug = True
+        if self.anzahl == 1:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 1 * self.f_angabe)
+        elif self.anzahl == 2:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 600, 510, 600)
+            self.canvas.create_text(520, 600, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 2 * self.f_angabe)
+        elif self.anzahl == 3:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 520, 510, 520)
+            self.canvas.create_text(520, 520, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 680, 510, 680)
+            self.canvas.create_text(520, 680, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 3 * self.f_angabe)
+        elif self.anzahl == 4:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 475, 510, 475)
+            self.canvas.create_text(520, 475, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 600, 510, 600)
+            self.canvas.create_text(520, 600, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 725, 510, 725)
+            self.canvas.create_text(520, 725, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 350, text = 4 * self.f_angabe)
+        elif self.anzahl == 5:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 450, 510, 450)
+            self.canvas.create_text(520, 450, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 550, 510, 550)
+            self.canvas.create_text(520, 550, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 650, 510, 650)
+            self.canvas.create_text(520, 650, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 750, 510, 750)
+            self.canvas.create_text(520, 750, text = 4 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 5 * self.f_angabe)
+        elif self.anzahl == 6:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 433, 510, 433)
+            self.canvas.create_text(520, 433, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 516, 510, 516)
+            self.canvas.create_text(520, 516, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 600, 510, 600)
+            self.canvas.create_text(520, 600, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 683, 510,683)
+            self.canvas.create_text(520, 683, text = 4 * self.f_angabe)
+            self.canvas.create_line(470, 766, 510, 766)
+            self.canvas.create_text(520, 766, text = 5 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 6 * self.f_angabe)
+        elif self.anzahl == 7:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 421, 510, 421)
+            self.canvas.create_text(520, 421, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 492, 510, 492)
+            self.canvas.create_text(520, 492, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 564, 510, 564)
+            self.canvas.create_text(520, 564, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 635, 510, 635)
+            self.canvas.create_text(520, 635, text = 4 * self.f_angabe)
+            self.canvas.create_line(470, 707, 510, 707)
+            self.canvas.create_text(520, 707, text = 5 * self.f_angabe)
+            self.canvas.create_line(470, 778, 510, 778)
+            self.canvas.create_text(520, 778, text = 6 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 7 * self.f_angabe)
+        elif self.anzahl == 8:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 412, 510, 412)
+            self.canvas.create_text(520, 412, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 475, 510, 475)
+            self.canvas.create_text(520, 475, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 537, 510, 537)
+            self.canvas.create_text(520, 537, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 600, 510, 600)
+            self.canvas.create_text(520, 600, text = 4 * self.f_angabe)
+            self.canvas.create_line(470, 662, 510, 662)
+            self.canvas.create_text(520, 662, text = 5 * self.f_angabe)
+            self.canvas.create_line(470, 725, 510, 725)
+            self.canvas.create_text(520, 725, text = 6 * self.f_angabe)
+            self.canvas.create_line(470, 787, 510, 787)
+            self.canvas.create_text(520, 787, text = 7 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 8 * self.f_angabe)
+        elif self.anzahl == 9:
+            self.canvas.create_line(470, 350, 510, 350)
+            self.canvas.create_text(520, 350, text = 0)
+            self.canvas.create_line(470, 405, 510, 405)
+            self.canvas.create_text(520, 405, text = 1 * self.f_angabe)
+            self.canvas.create_line(470, 461, 510, 461)
+            self.canvas.create_text(520, 461, text = 2 * self.f_angabe)
+            self.canvas.create_line(470, 516, 510, 516)
+            self.canvas.create_text(520, 516, text = 3 * self.f_angabe)
+            self.canvas.create_line(470, 572, 510, 572)
+            self.canvas.create_text(520, 572, text = 4 * self.f_angabe)
+            self.canvas.create_line(470, 627, 510, 627)
+            self.canvas.create_text(520, 627, text = 5 * self.f_angabe)
+            self.canvas.create_line(470, 683, 510, 683)
+            self.canvas.create_text(520, 683, text = 6 * self.f_angabe)
+            self.canvas.create_line(470, 738, 510, 738)
+            self.canvas.create_text(520, 738, text = 7 * self.f_angabe)
+            self.canvas.create_line(470, 794, 510, 794)
+            self.canvas.create_text(520, 794, text = 8 * self.f_angabe)
+            self.canvas.create_line(470, 850, 510, 850)
+            self.canvas.create_text(520, 850, text = 9 * self.f_angabe)
+        self.canvas.create_text(550, 600, text = self.f)
+        self.canvas.create_line(MID_Y, 300, MID_Y, 900)
+        self.canvas.create_text(MID_Y, 250, text = m2)
+        self.canvas.create_text(MID_Y, 950, text = m1)
 window = Tk()
 window.title("Gravitationssimulation")
 
@@ -85,14 +207,14 @@ def click_berechnen_button():
     disp_txt = 'Fg = {:3.3e}'.format(f)
     ergebnis_fg.set(disp_txt)
     if a is None:
-        a = SpaceObject(c, m1,  (MID_X + 300), MID_Y, True)
+        a = SpaceObject(c, m1,  (MID_X + 250), MID_Y, True)
         a.bounce()
         a.draw()
     if b is None:
-        b = SpaceObject(c,  m2, (MID_X - 300), MID_Y, False)
+        b = SpaceObject(c,  m2, (MID_X - 250), MID_Y, False)
         b.bounce()
         b.draw()
-    # z = FG(c,  f, dist,  m1,  m2)
+    z = FG(c,  f, dist,  m1,  m2)
 
 
 frame = Frame(window)
